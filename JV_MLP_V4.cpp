@@ -7,7 +7,6 @@
 #include<string>
 #include<random>
 #include<cmath>
-#include<omp.h>
 #include<algorithm>
 #include<typeinfo>
 #include<chrono>
@@ -49,7 +48,7 @@ Description:
         n = A.size();
 
     vector<vector<T>> C(batch_size,vector<T>(m,0.0));
-#pragma omp parallel for private(ii,jj,xx) shared(A,B,c)
+
     for(auto ii=cur_row;ii<n;ii++)
         for(auto xx=0;xx<k;xx++) 
             for(auto jj=0;jj<m;jj++)
@@ -1520,4 +1519,14 @@ int main() {
 
             1. Dropout
             2. BN
+*/
+
+/*
+
+avoid push back in forward, instead try use index
+pytorch for MNIST, see time per epoch
+try with fashion mnist in cpp
+add openMP pragma
+try to optimize the existing code further.
+
 */
